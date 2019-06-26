@@ -21,7 +21,7 @@ USE_TZ = True
 
 DEBUG = True
 
-ROOT_URLCONF = "project.urls"
+ROOT_URLCONF = 'project.urls'
 
 ALLOWED_HOSTS = ['*']
 
