@@ -1,24 +1,6 @@
 from datacenter.models import Passcard
 from datacenter.models import Visit
 from django.shortcuts import render
-from django.utils import timezone
-
-
-LONG_VISIT = 60 * 60
-
-
-def duration(leaved_at, entered_at):
-    if leaved_at is not None:
-        return leaved_at - entered_at
-    else:
-        return timezone.now().replace(microsecond=0) - entered_at
-
-
-def is_strange_visit(leaved_at, entered_at):
-    if leaved_at is not None:
-        return (leaved_at - entered_at).seconds > LONG_VISIT
-    else:
-        return (timezone.now().replace(microsecond=0) - entered_at).seconds > LONG_VISIT
 
 
 def passcard_info_view(request, passcode):
@@ -26,8 +8,8 @@ def passcard_info_view(request, passcode):
     visits = Visit.objects.filter(passcard=passcard).order_by('-entered_at')
     visits_formatted = [{
         'entered_at': visit.entered_at,
-        'duration': duration(visit.leaved_at, visit.entered_at),
-        'is_strange': is_strange_visit(visit.leaved_at, visit.entered_at)
+        'duration': Visit.duration(visit),
+        'is_strange': Visit.is_strange_visit(visit)
     } for visit in visits]
     context = {
         'passcard': passcard,
