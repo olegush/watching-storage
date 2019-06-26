@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-
 LONG_VISIT = 60 * 60
-
 
 class Passcard(models.Model):
     is_active = models.BooleanField(default=False)
@@ -30,13 +28,11 @@ class Visit(models.Model):
             leaved= 'leaved at ' + str(self.leaved_at) if self.leaved_at else 'not leaved'
         )
 
-
     def duration(self):
         if self.leaved_at is not None:
             return self.leaved_at - self.entered_at
         else:
             return timezone.now().replace(microsecond=0) - self.entered_at
-
 
     def is_strange_visit(self):
         if self.leaved_at is not None:
