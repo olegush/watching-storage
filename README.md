@@ -14,7 +14,17 @@ source virtualenv_folder_name/bin/activate
 python3.6 -m pip install -r requirements.txt
 ```
 
-Put database parameters and your time zone in the **settings.py** file.
+Put vulnerable parameters to **.env** file.
+
+```bash
+DB_ENGINE=db_engine
+DB_HOST=db_host
+DB_PORT=db_port
+DB_NAME=db_name
+DB_USER=db_user
+DB_PASSWORD=db_password
+SECRET_KEY=secret_key
+```
 
 
 # Quickstart
@@ -23,7 +33,7 @@ Put database parameters and your time zone in the **settings.py** file.
 
 ```bash
 
-$ python3 main.py
+$ python3 manage.py runserver 0.0.0.0:8000
 
 Performing system checks...
 
@@ -33,7 +43,6 @@ Django version 1.11.21, using settings 'project.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
 [26/Jun/2019 13:44:52] "GET / HTTP/1.1" 200 43454
-
 
 ```
 
