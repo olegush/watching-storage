@@ -24,7 +24,10 @@ DB_NAME=db_name
 DB_USER=db_user
 DB_PASSWORD=db_password
 SECRET_KEY=secret_key
+DEBUG=1 or DEBUG=0
 ```
+
+Define your own criteria of visit's strangeness with LONG_VISIT constant in the **models.py** (seconds).
 
 
 # Quickstart

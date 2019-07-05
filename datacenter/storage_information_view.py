@@ -13,8 +13,8 @@ def storage_information_view(request):
         'who_entered':visit.passcard.owner_name,
         'passcode':visit.passcard.passcode,
         'entered_at': timezone.localtime(visit.entered_at),
-        'duration': visit.duration(),
-        'is_strange': visit.is_strange_visit()
+        'duration': visit.get_duration(),
+        'is_strange': visit.get_duration().seconds > visit.LONG_VISIT
         } for visit in non_closed_visits]
     context = {
         'non_closed_visits': non_closed_visits_formatted,

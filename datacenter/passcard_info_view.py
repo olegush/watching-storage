@@ -8,8 +8,8 @@ def passcard_info_view(request, passcode):
     visits = Visit.objects.filter(passcard=passcard).order_by('-entered_at')
     visits_formatted = [{
         'entered_at': visit.entered_at,
-        'duration': Visit.duration(visit),
-        'is_strange': Visit.is_strange_visit(visit)
+        'duration': visit.get_duration(),
+        'is_strange': visit.get_duration().seconds > visit.LONG_VISIT
     } for visit in visits]
     context = {
         'passcard': passcard,

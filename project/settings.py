@@ -1,4 +1,5 @@
 import os
+from distutils.util import strtobool
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -22,12 +23,11 @@ TIME_ZONE = 'Europe/Moscow'
 
 USE_TZ = True
 
-DEBUG = True
+DEBUG = strtobool(os.environ.get('DEBUG'))
 
 ROOT_URLCONF = 'project.urls'
 
 ALLOWED_HOSTS = ['*']
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [
